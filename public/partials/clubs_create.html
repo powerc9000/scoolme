@@ -1,0 +1,53 @@
+
+<div class="row-fluid margin-t">
+	<div class="span9">
+		<form ng-submit="formClub()" name="new_club_form">
+			<div class="club_creation_main">
+				<div class="row-fluid">
+					<div class="span4">
+						<h3 class="club_creation align-c">Club creation</h3>
+					</div>
+					<div class="span5">
+						<input type="text" class="span12" placeholder="Club name" name="club_name" required>
+					</div>
+					<div class="span3">
+						<select name="who_can_see" class="span12" id="" required>
+							<option value="">Who can see this club?</option>
+							<option value="1">Anyone</option>
+							<option value="0">Members Only</option>
+						</select>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<textarea class="span12" name="club_description" required placeholder="Club Description"></textarea>
+				</div>
+				<div class="row-fluid">
+					<div class="span5">
+						<select name="who_can_join" ng-model="who_can_join" class="span12" required>
+							<option value="">Who can join this club?</option>
+							<option value="1">Anyone</option>
+							<option value="2">By Request</option>
+							<option value="0">Invite Only</option>
+						</select>
+					</div>
+					<div ng-show="who_can_join ==0 || who_can_join == 2" class="span5">
+						<select name="who_can_invite" class="span12" requiired>
+							<option value="">Who can invite people to this club?</option>
+							<option value="0">Mods Only</option>
+							<option value="1">Any Member</option>
+						</select>
+					</div>
+					<div class="span2">
+						<button type="submit" class="btn btn-primary span12">Create</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="span3">
+		<div class="ads align-c">
+			<ng-include src="'/partials/ad.html'"></ng-include>
+		</div>
+	</div>
+	
+</div>

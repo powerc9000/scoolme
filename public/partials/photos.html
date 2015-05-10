@@ -1,0 +1,83 @@
+	<div ng-show="data.albums" class="albums">
+	<div class="page-header">
+			<h4>{{data.user.fname}}'s Albums</h4>
+	</div>
+		
+	</div>
+		<div class="row-fluid margin-t">
+			<div class="span9">
+				<div class="row-fluid album_row" > 
+					<div class="span3 album" ng-repeat="album in data.albums">
+						<h3 class="album_header white-header"><a href="photos/album/{{album.album_id}}">{{album.name}}</a> </h3>
+						<div class="preview">
+							<a href="photos/album/{{album.album_id}}"><img src="http://cdn.scoolme.com/photos/{{album.photo.filename}}"></a>
+						</div>
+						<div>
+							<h5 class="white-header">{{album.totalPhotos}} photos</h5>
+							<a ng-show="data.user.user_id == loggedInUser.user_id" ng-click="deleteAlbum(album.album_id)">Delete Album</a>
+						</div>
+					</div>
+				</div>
+				<div class="page-header">
+						<h4>{{data.photos[0].name || 'Photos'}}</h4>
+				</div>
+				
+					<ul class="unstyled thumbnails hide" id="photos" masonry>
+						<li class=" thumbnail photo" checklast ng-repeat="photo in data.photos">
+							<a href="#" ng-click="showPhoto()">
+								<img src="http://cdn.scoolme.com/photos/{{photo.filename}}">
+							</a>
+						</li>
+					</ul>
+			</div>
+			<div class="span3 adverts">
+				<div class="ads">
+					<img src="/img/storage/generic_ad.jpg">
+				</div>
+			</div>
+
+
+		</div>
+
+	
+	<div ng-class="{hide:!show}">
+		<div class="transparent-div" ng-click="show = false"></div>
+		<div class="classy-modal modal photo-viewer row-fluid" >
+			<div class="span9 image-container">
+				<div class="image">
+					<div class="loader"></div><img src="http://cdn.scoolme.com/photos/full/{{largerPhoto}}" alt="" center-image>
+					
+					<div class="close" title="close" ng-click="show = f"><span>&times;</span></div>
+				</div>
+				<div class="photo-comment">
+						<h4>Comment on this photo</h4>
+					<form ng-submit="commentOnPhoto()">
+						<textarea ng-model="comment" class="comment_box"></textarea>
+						<button type="submit" class="btn btn-primary">Comment</button>
+					</form>
+				</div>
+			</div>
+			
+			<div class="photo-comments span3">
+				<div>{{cPhoto.description}} - <a ng-href="" ng-click="showEditPhotoDescription = !showEditPhotoDescription" ng-show="cPhoto.user_id == loggedInUser.user_id ">Edit description</a></div>
+				<div>
+					<a ng-href="" ng-click="deletePhoto(cPhoto)" ng-show="cPhoto.user_id == loggedInUser.user_id ">Delete Photo</a>
+				</div>
+				<div class="edit-photo-description" ng-show="showEditPhotoDescription" class="row-fluid">
+					<textarea name="" id="" rows="5" ng-model="cPhoto.description" class="span12"></textarea>
+					<br>
+					<button class="btn btn-primary" ng-click="saveDescription(cPhoto)">Save</button><button class="btn btn-danger" ng-click="cancelEdit(cPhoto)">Cancel</button>
+				</div>
+				<dv class="page-header">
+					<h5>Comments</h5>
+				</dv>
+				<div ng-repeat="comment in comments | orderBy:comment.date:true" class="photo-comment">
+					<img src="http://cdn.scoolme.com/photos/profile_photos/30px/{{comment.profile_pic}}" alt="" >
+					<p class="photo-comment-name"><a href="/user/{{comment.user_id}}">{{comment.fname}} {{comment.lname}}</a>
+					</p>
+					<p>{{comment.comment_body}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+

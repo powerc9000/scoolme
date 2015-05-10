@@ -1,0 +1,81 @@
+<div class="row-fluid head">
+				<div class="post_info">
+					<div class="span2 post_picture">
+						<a href="/user/{{post.user_id}}"><img ng-src="http://cdn.scoolme.com/photos/profile_photos/80px/{{post.profile_pic}}" backup-image></a>
+					</div>
+					<div class="span10 post_text">
+						<a ng-href="#" class="pull-right" ng-click="deletePost(post.post_id)" ng-show="post.user_id == loggedInUser.user_id">Delete Post</a>
+						<h4 class="post_name"><a href="/user/{{post.user_id}}">{{post.fname}} {{post.lname}}</a> 
+							<span ng-show="post.reference_id && !noShowMention">--> 
+
+								<span ng-switch on="post.post_scope">
+									<a href="/user/{{post.reference_id}}" ng-switch-when="1">{{post.mention_name}} </a>
+									<a href="/clubs/club/{{post.reference_id}}" ng-switch-when="2">{{post.mention_name}} </a>
+									<a href="/events/event/{{post.reference_id}}" ng-switch-when="3">{{post.mention_name}} </a>
+									<a href="/schools/school/{{post.reference_id}}" ng-switch-when="4">{{post.mention_name}}</a>
+								</span>
+							</span></h4>
+
+						<p class="post_body" ng-init="postLength=1000" markdown>{{(post.post_body).substring(0, postLength)}} 
+							<span ng-show="post.post_body.length > 1000">
+								<span ng-show="postLength == 1000" >
+									<a href="#" ng-click="postLength = post.post_body.length">Show More</a>
+								</span>
+								<span ng-show="postLength > 1000" >
+									<a href="#" ng-click="postLength = 1000">Show Less</a>
+								</span>
+							</span>
+						</p>
+						<div ng-switch on="post.post_type">
+							<div ng-switch-when="1" class="post-media-photo">
+								<a href="/user/{{post.user_id}}/photos?photo={{post.attachment_id}}"><img alt="" ng-src="http://cdn.scoolme.com/photos/full/{{post.filename}}"></a>
+							</div>
+						</div>
+						<div ng-show="post.post_ids.length" class="post_ids">
+							<h5>IDed in this post</h5>
+							<ul  class="unstyled">
+								<li class="pull-left" ng-repeat="id in post.post_ids"><a href="/user/{{id.user_id}}">{{id.fname}} {{id.lname}}</a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div ng-repeat="comment in post.comments">
+							<div class="row-fluid head">
+								<div class="post_info">
+									<div class="span2 post_picture">
+										<img src="http://cdn.scoolme.com/photos/profile_photos/80px/{{comment.profile_pic}}">
+									</div>
+									
+									<div class="span10 reply_text">
+										<h4 class="post_name"><a href="/user/{{comment.user_id}}">{{comment.fname}} {{comment.lname}}</a></h4>
+										<p class="post_body" markdown>{{comment.comment_body}}</p>
+										<small>{{comment.date | date}}</small>
+										<!-- <div class="row-fluid bottom">
+											<a href="#"><img src="/img/icons/thumbs.png" class="like"></a><span>Like this post</span>
+										</div> -->
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row-fluid bottom">
+							<span ng-show="!post.liked_post">
+								<a href="#" ng-click="likePost()"><img src="/img/icons/thumbs.png" class="like"></a><span>Like this post</span>
+							</span>
+							<span ng-show="post.liked_post">
+								<a href="#" ng-click="likePost()"><img src="/img/icons/thumbs.png" class="like"></a><span>Unlike this post</span>
+							</span>
+							<br>
+							<i ng-show="post.like_count >0"><span ng-pluralize count="post.like_count" when="{1: '1 person likes this', 'other':'{} like this'}"></span></i>
+							<i><a href="#" class="pull-right" ng-click="commentForm = true">comment on this post</a></i>
+							<br><i>{{(post.date)*1000 | date}}</i>
+							<br>
+							<i><a ng-href="#" ng-click="flagPost()">Flag post</a></i>
+							<form ng-submit="newComment()" class="form-inline " ng-show="commentForm">
+								
+									<input type="text" ng-model="comment_body" class="span-block"><!-- <button class="btn btn-inverse" type="submit">Comment</button> -->
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>

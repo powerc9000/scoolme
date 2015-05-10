@@ -1,0 +1,13 @@
+<div class="row-fluid margin-t">
+			<div class="span3 margin-left" ng-repeat="friend in friends">
+				<div class="school_mate">
+					<div class="row-fluid">
+						<div class="span3">
+							<img ng-src="http://cdn.scoolme.com/photos/profile_photos/80px/{{friend.profile_pic}}" height="60" backup-image>
+						</div>
+						<div class="span9">
+							<p><a href="/user/{{friend.user_id}}">{{friend.fname}} {{friend.lname}}</a></p>
+						</div>
+					</div>
+				</div>
+		</div>

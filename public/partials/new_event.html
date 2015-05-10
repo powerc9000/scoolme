@@ -1,0 +1,63 @@
+<div class="row-fluid margin-t">
+	<div class="span9">
+		<div class="club_creation_main">
+			<h3 class="club_creation align-c">Event creation</h3>
+			<form ng-submit="newEvent()" name="newEventForm">
+				<div class="control-group">
+					<label for="labelForTitle" class="control-label">Title</label>
+					<div class="controls">
+						<input type="text" name="title" id="labelForTitle" required class="span12">
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="labelForDescription" class="control-label">Description</label>
+					<div class="controls">
+						<textarea name="description" id="labelForDescription" required class="span12" rows="10"></textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="" class="control-label">Start Date and Time</label>
+					<div class="controls">
+						<input type="text" name="start_date" placeholder="date" ng-model="date.start" bs-datepicker data-toggle="date" required> <input type="text" class="input input-small" name="start_time" placeholder="Time" bs-timepicker ng-model="time.start" data-toggle="time">
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="" class="control-label">End Date and Time</label>
+					<div class="controls">
+						<input type="text" name="end_date"  placeholder="date" ng-model="date.end" bs-datepicker data-toggle="date" required> <input type="text" class="input input-small"name="end_time" placeholder="Time" bs-timepicker ng-model="time.end" data-toggle="time">
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="" class="control-label">Privacy</label>
+					<div class="controls">
+						<select name="privacy">
+							<option value="0">Invite Only</option>
+							<option value="1">Friends</option>
+							<option value="2">School</option>
+							<option value="3">Public</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<label for="">Can guests invite Friends? <input type="checkbox" name="can_invite"></label>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="" class="control-label">Location</label>
+					<div class="controls">
+						<input type="text" name="location" placeholder="Location" required>
+					</div>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Create Event</button>
+
+			</form>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="ads align-c">
+			<ng-include src="'/partials/ad.html'"></ng-include>
+		</div>
+	</div>
+</div>

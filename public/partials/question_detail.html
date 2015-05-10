@@ -1,0 +1,31 @@
+<div class="row-fluid">
+	<div class="page-header">
+		<h3>{{data.question.title}}</h3>
+	</div>
+	<p>{{data.question.body}}</p>
+	<hr>
+	<div>
+		<div class="page-header">
+			<h4><ng-pluralize count="(data.question.answers).length" when="{'one': '{} Response', 'other': '{} Responses'}"></ng-pluralize></h4>
+		</div>
+		<ul class="unstyled">
+			<li ng-repeat="answer in data.question.answers">
+				<p>{{answer.body}}</p>
+				<div class="clearfix"></div>
+				<p class="pull-right"><a href="/user/{{answer.user_id}}">{{answer.fname}} {{answer.lname}}</a>
+					<br>
+					<img src="http://cdn.powerc9000.com/photos/profile_photos/80px/{{answer.profile_pic}}" alt="">
+				</p>
+				<div class="clearfix"></div>
+			</li>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+	<div class="page-header">
+		<h4>Answer this question</h4>
+	</div>
+	<form ng-submit="answerQuestion()"  name="answerForm">
+		<textarea name="answer_body" placeholder="Resond?"></textarea>
+		<button type="submit" class="btn btn-primary">Answer this</button>
+	</form>
+</div>

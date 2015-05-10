@@ -1,0 +1,42 @@
+<div class="row-fluid margin-tt">
+	<div class="edit-profile span9 ads">
+		<form ng-submit="editProfile()" class="form-horizontal" name="editForm">
+			<div class="control-group">
+				<label for="" class="control-label">Email</label>
+				<div class="controls">
+					<input type="email" ng-model="data.email" class="span9" name="email" required is-unique-email>
+					<span ng-show="editForm.email.$error.email">Not a valid email</span>
+					<span ng-show="editForm.email.$error.unique">Email is already taken</span>
+				</div>
+
+			</div>
+			<div class="control-group">
+				<label for="" class="control-label">*Password</label>
+				<div class="controls"><input type="password" ng-model="password" class="span9" required></div>
+			</div>
+			<div class="control-group">
+				<h4>Change Password</h4>
+			</div>
+			
+			<div class="control-group">
+				<label for="" class="control-label">New Password</label>
+				<div class="controls">
+					<input type="password" ng-model="new_password" name="npassword" class="span9">
+					<span ng-show="editForm.npassword.$viewValue != editForm.cpassword.$viewValue && !editForm.cpassword.$pristine">Passwords must match</span></div>
+			</div>
+			<div class="control-group">
+				<label for="" class="control-label">Confirm New Password</label>
+				<div class="controls"><input type="password" ng-model="confirm_password" name="cpassword" class="span9"></div>
+			</div>
+			<div class="form-actions">
+				<button class="btn btn-primary" type="submit">Save Changes</button>
+				<a href="/profile" class="btn btn-danger">Cancel Changes</a>
+			</div>
+		</form>
+		</div>
+	<div class="span3">
+		<div class="ads">
+			<img src="../img/storage/generic_ad.jpg">
+		</div>
+	</div>
+</div>

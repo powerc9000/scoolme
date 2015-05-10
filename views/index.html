@@ -1,0 +1,185 @@
+<!doctype html>
+<html ng-app="scoolme" xmlns:ng="http://angularjs.org">
+<head>
+	<title ng-bind="title"></title>
+	<link href="http://mgcrea.github.com/angular-strap/css/bootstrap-datepicker.css" rel="stylesheet">
+	<link href="http://mgcrea.github.com/angular-strap/css/bootstrap-timepicker.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="/css/backgrounds.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<script type="text/javascript" src="http://masonry.desandro.com/jquery.masonry.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+	<script type="text/javascript" src="http://cdn.scoolme.com/js/angular-strap.min.js"></script>
+	<script src="http://cdn.scoolme.com/js/bootstrap-datepicker.js"></script>
+	<script src="http://cdn.scoolme.com/js/bootstrap-timepicker.js"></script>
+	<script src="/js/directive.js"></script>
+	<script src="/js/factory.js"></script>
+	<script src="/js/router.js"></script>
+	<script type="text/javascript" src="/js/scoolme.js"></script>
+
+    <!--[if lte IE 8]>
+      <script>
+        document.createElement('ng-include');
+        document.createElement('ng-pluralize');
+        document.createElement('ng-view');
+
+        // Optionally these for CSS
+        document.createElement('ng:include');
+        document.createElement('ng:pluralize');
+        document.createElement('ng:view');
+      </script>
+    <![endif]-->
+</head>
+<body ng-controller="cssCtrl">
+	<div ng-controller="alertCtrl">
+	<div class="trans-div"></div>
+	</div>
+	<div class="navbar navbar-inverse navbar-fixed-top top">
+		<div class="navbar-inner">
+			<div class="container navbar-contain">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a  href="/" class="pull-left"><img src="/img/logos/logo16.png" height="40" class="logo2"></a>
+				<div class="notification-center pull-left">
+					<div  ng-controller="notifications" class="notification-contain">
+						
+						<a ng-href="" class="notifications" ng-click="toggleDropdown()"><span class="notification-count" ng-show="unseenNotifications()">{{unseenNotifications()}}</span><i class="icon-globe icon-white"></i></a>
+						<ul ng-show="show" class="notifications-dropdown">
+							<div class="page-header">
+								<h4>Notifications</h4>
+							</div>
+							<li ng-repeat="n in notifications">
+								<a href="{{n.target_url}}" ><span class="n-image"><img src="http://cdn.scoolme.com/photos/profile_photos/30px/{{n.profile_pic}}" alt=""></span>{{n.fname}} {{n.lname}} {{n.notification_text}}<div class="clearfix"></div></a>
+
+							</li>
+						</ul>
+					</div>
+					<div class="friend-requests notification-contain" ng-controller="header">
+						<a ng-href="" class="notifications" ng-click="toggleDropdown()"><span class="notification-count" ng-show="unseenNotifications()">{{unseenNotifications()}}</span><i class="icon-user icon-white"></i></a>
+							<ul ng-show="show" class="notifications-dropdown">
+							<div class="page-header">
+								<h4>Friend Requests</h4>
+							</div>
+
+							<li ng-repeat="request in notifications.friend_requests">
+								<a href="/user/{{request.user_id}}" >{{request.fname}} Wants to be friends</a> <a ng-href="" ng-click="acceptFriendRequest()" class="btn btn-success">Accept</a></a>
+
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="nav-collapse collapse pull-right">
+					<ul class="nav">
+						
+						<li>
+							<a href="/profile">Profile</a>
+						</li>
+						<li class="">
+							<a href="/logout">Sign out</a>
+						</li>
+						<li ng-controller="searchPeople" class="navbar-form pull-right">
+							<input type="text" ng-change="searchPeople()" placeholder="Search People!" ng-model="searchTerm">
+							<ul ng-show="people.length" class="search-people-results">
+								<li ng-repeat="p in people"><a href="/user/{{p.user_id}}" ng-click="clearSearch()">{{p.fname}} {{p.lname}}</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="container wrap">
+		<div ng-controller="alertCtrl">
+			<div class="alert alert-{{alertType}}" ng-show="alertActive">
+			  <button type="button" class="close" ng-click="alertActive = false">×</button>
+			  {{alertMessage}}
+			</div>
+		</div>
+		<div class="nav_bar_wrap">
+			<div class="row-fluid nav_bar">
+				<ul>
+					<li class="span2"><a href="/home"  ng-class="{onlink: currlink == 'home'}">Home</a></li>
+					<li class="span2"><a href="/schools" ng-class="{onlink: currlink == 'schools'}">Schools</a></li>
+					<li class="span2"><a href="/buzz">The Buzz</a></li>
+					<li class="span2 clubs"><a href="/clubs">Clubs<i class="icon-chevron-down pull-right darrow"></i></a>
+						<ul class="dropdown">
+							<li><a href="/clubs">Find clubs</a></li>
+							<li><a href="/clubs/create">Create club</a></li>
+						</ul>
+					</li>
+					<li class="span2 clubs"><a href="/sports">Sports<i class="icon-chevron-down pull-right darrow"></i></a>
+						<ul class="dropdown">
+							<li><a href="sports?sport=football">Football</a></li>
+							<li><a href="sports?sport=baseball">Baseball</a></li>
+							<li><a href="sports?sport=basketball">Basketball</a></li>
+							<li><a href="sports?sport=tennis">Tennis</a></li>
+							<li><a href="sports?sport=golf">Golf</a></li>
+							<li><a href="sports?sport=hockey">Hockey</a></li>
+							<li><a href="sports?sport=volleyball">Volleyball</a></li>
+							<li><a href="sports?sport=swimming">Swimming</a></li>
+							<li><a href="sports?sport=soccer">Soccer</a></li>
+							<li><a href="sports?sport=wrestling">Wrestling</a></li>
+							<li><a href="sports?sport=rubgy">Rugby</a></li>
+							<li><a href="sports?sport=lacrosse">Lacrosse</a></li>
+						</ul>
+					</li>
+					<li class="span2 matched_up"><a href="/events">Events</a>
+						
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="loader" class="hide">Loading....</div>
+		<ng-view></ng-view>
+	</div>
+	
+
+	
+	<div class="chats pull-left" ng-controller="chat">
+		<ul class="chat-windows">
+			<li class="chat friends-online" ng-class="{closed: !chat.closed}" nth-window="0">
+				<div class="friends-online-heading">
+					<h4 ><a ng-href="" ng-click="chat.closed = !chat.closed">Friends online {{totalFriendsOnline()}}</a></h4>
+				</div>
+				<div class="messages">
+					<a ng-href="" ng-click="openChat(friend.user_id)" class="friend-online" ng-repeat="friend in friendsOnline" >
+						<img src="http://cdn.scoolme.com/photos/profile_photos/30px/{{friend.profile_pic}}" alt="" width="30" height="30">
+						{{friend.fname}} {{friend.lname}}
+						<div class="clearfix"></div>
+					</a>
+				</div>
+				
+			</li>
+			<li ng-repeat="chat in chats" class="chat" nth-window="{{$index+1}}" ng-class="{closed: chat.closed}">
+				<div class="chat-detail">
+					<div ng-show="chat.unread" class="pull-left chat-notification">{{chat.unread}}</div>
+					<a href="" ng-click="removeChat($index)" class="pull-right">&times;</a>
+					<a ng-href="" ng-click="chat.closed = !chat.closed; chat.unread = 0" ><h4 class="chat-name">{{chat.fname}} {{chat.lname}}</h4></a>
+					
+					<div class="clearfix"></div>
+				</div>
+			 
+			<div class="messages">
+				<p ng-repeat="message in chat.messages" class="message">
+					<span ng-show="message.reply">
+						<img src="http://cdn.scoolme.com/photos/profile_photos/30px/{{$parent.chat.profile_pic}}" alt="" width="30" height="30">
+					</span> 
+					<span ng-show="!message.reply"><img src="http://cdn.scoolme.com/photos/profile_photos/30px/{{loggedInUser.profile_pic}}" alt="" width="30" height="30"></span> {{message.message}}</p>
+			</div>
+			<form ng-submit="sendMessage(chat.user_id)" class="row-fluid">
+				<input type="text" ng-model="messageText" class="inputText span12">
+			</form>
+		</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html ng-app="chat">
+<head>
+	<title>Chat!</title>
+	<script src="/socket.io/socket.io.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+  <script type="text/javascript" src="http://code.angularjs.org/1.0.2/angular.min.js"></script>
+	<script type="text/javascript">
+    var app = angular.module("chat",[])
+    app.factory("socket", function($rootScope){
+      var socket = io.connect('http://localhost:3000');
+      return {
+        on: function(eventName, callback){
+          socket.on(eventName, function(){
+            var args = arguments;
+            $rootScope.$apply(function(){
+              callback.apply(socket, args)
+            })
+          })
+        }
+      }
+    })
+    function chat($scope, socket){
+      $scope.messages = [];
+      socket.on("news",function(data){
+        $scope.messages.push(data)      
+      })
+      $so
+    }
+  // socket.on('news', function (data) {
+  //   console.log(data);
+  //   socket.emit('my other event', { my: 'data' });
+  // });
+  // socket.on("message", function(name, message){
+  // 	console.log("got something", message)
+  // 	$(".messages").append("<li>"+name+": "+message+"</li>")
+  // })
+  // $(function(){
+  // 	$(".submit").click(function(){
+
+  // 		message = $("#newMessage").val()
+  //     to = $("#to").val()
+  // 		console.log("submit!",message)
+  // 		socket.emit("message", message, to)
+  // 	})
+  // })
+	</script>
+</head>
+<body ng-controller="chat">
+	<ul class="messages">
+    <li ng-repeat="message in messages">{{message.fuck}}</li>
+	</ul>
+  <input type="text" id="to">
+	<input type="text" id="newMessage">
+	<button class="submit">Send</button>
+
+</body>
+</html>

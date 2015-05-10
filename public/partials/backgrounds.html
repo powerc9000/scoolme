@@ -1,0 +1,26 @@
+<div class="row-fluid margin-t">
+			<div class="span9">
+				<div class="row-fluid">
+					<div class="background_selection">
+						<div class="page-header">
+							<h1 class="white-header">Click on a square to change your background</h1>
+						</div>
+						<div ng-repeat="b in [] | range:5" class="row-fluid">
+							<div ng-repeat="b in backgrounds | startFrom:$index*4 | limitTo:4 " class="background {{b}} span3" ng-click="changeBackground($index + $parent.$index*4)">
+								<div class="row-fluid" ng-show="isCurrentGradient($index + $parent.$index*4)">
+									<img src="/img/icons/selected.png" class="checked">
+								</div>
+								<div class="row-fluid" ng-show="isLocked($index + $parent.$index*4)">
+									<img src="/img/icons/lock.png" class="lock">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span3 adverts">
+				<div class="ads">
+					<img src="/img/storage/generic_ad.jpg">
+				</div>
+			</div>
+		</div>

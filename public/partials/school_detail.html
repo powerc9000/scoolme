@@ -1,0 +1,19 @@
+<div class="row-fluid">
+	<img src="/img/{{data.school.logo}}" alt="">
+	<div class="page-header">
+		<h1>{{data.school.school_name}}</h1>
+
+	</div>
+	<p>{{data.school.city}}, {{data.school.state}}</p>
+	<p>Classification: {{data.school.clasification}}</p>
+	<p>Mascot: {{data.school.classification}}</p>
+	<p>Enrollment: {{data.school.enrollment}}</p>
+	<p>People who go here:</p>
+	<ul>
+		<li ng-repeat="person in data.school.attend"><a href="/user/{{person.user_id}}">{{person.fname}} {{person.lname}}</a></li>
+	</ul>
+	<p>Alumni:</p>
+	<ul>
+		<li ng-repeat="person in data.school.alumni"><a href="/user/{{person.user_id}}">{{person.fname}} {{person.lname}}</a></li>
+	</ul>
+</div>

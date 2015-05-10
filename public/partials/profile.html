@@ -1,0 +1,274 @@
+<div class="row-fluid profile_main">
+
+	<div class="span9">
+		<div class="row-fluid">
+			<div class="span12 profile_header">
+				<div class="span3 profile-photo" ng-click="uploadProfilePhoto = !uploadProfilePhoto">
+					<img ng-src="http://cdn.scoolme.com/photos/profile_photos/200px/{{data.profile_pic}}" ng-show="data.profile_pic">
+					<img ng-src="http://cdn.scoolme.com/photos/default.png" backup-image ng-show="!data.profile_pic">
+					<span ng-show="data.profile" class="overlay">Change Profile Photo</span>
+				</div>
+				<div class="span9">
+					<div class="row-fluid">
+						<div class="edit_profile span6">
+							<div  ng-show="data.profile">
+							<h5><i><a href="/profile/edit">Edit profile</a></i></h5>
+							<h5><i><a href="/profile/account-settings">Account Settings</a></i></h5>
+							<h5><i><a href="/backgrounds">Change Background</a></i></h5>
+							<div ng-show="uploadProfilePhoto" class="new-profile-photo">
+								<p>Upload a file</p>
+								<form enctype="multipart/form-data" profile-photo-upload action="/new-profile-photo" method="post">
+									<input type="file"  name="photo">
+									<button type="submit">upload</button>
+								</form>
+									<p>OR</p>
+								<a ng-href="" ng-click="chooseFromPhotos()">choose a photo from your albums</a>
+							</div>
+							</div>
+						</div>
+						<div class="pull-right" ng-show="!data.areFriends && !data.requestSent && !data.profile">
+							<button class="btn btn-primary" ng-click="requestFriendship()">Add as friend</button>
+						</div>
+						<div class="pull-right" ng-show="!data.areFriends && data.requestSent && !data.profile">
+							<button class="btn btn-primary disabled">Friend Request Sent</button>
+						</div>
+						<div class="profile_head span6">
+							<h3 ><span ng-show="!data.profile && online"><img src="/img/icons/online.png" id="profile_online_status" height="10" width="10"></span>{{data.fname}} {{data.lname}}</h3>
+							<h4><a href="/schools/school/{{data.school_id}}">{{data.school_name}} {{data.graduation}}</a></h4>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="about">
+							<h4 class="sub_header">About Me</h4>
+							<p>{{data.tag_line}}</p>
+						</div>
+					</div>
+				</div>
+				<!--<div class="profile_school_logo">
+				</div>-->
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4 information profile_information">
+				<div class="stats">
+					<ul>
+						<li>Birthday: <b>{{(data.birthdate*1000) | date}}</b></li>
+						<li>Gender: <b>{{data.sex| capitalize}}</b></li>
+						<li>Hometown: <b>{{data.hometown}}</b></li>
+						<li>City: <b>{{data.city}}</b></li>
+						<li>State: <b>{{data.state| capitalize}}</b></li>
+						<li>Relationship: <b>{{data.relationship_status}}</b></li>
+						<li ng-show="data.interests">Interests: <b>{{data.interests}}</b></li>
+						<li ng-show="data.sports">Sports: <b>{{data.sports}}</b></li>
+						<li ng-show="data.favorite_school_subject">Fav school subjects: <b>{{data.favorite_school_subject}}</b></li>
+						<li ng-show="data.favorite_activities">Activities: <b>{{data.favorite_activities}}</b></li>
+						<li ng-show="data.clubs">Clubs: <a href="/clubs/club/{{club.club_id}}" ng-repeat="club in data.clubs">{{club.club_name}}<span ng-show="!$last">, </span></a></li>
+					</ul>
+				</div>
+				<!-- <div class="row-fluid current">
+					<div class="row-fluid status">
+						<div class="span5 points">
+							<div class="row-fluid">
+								<img src="../img/icons/points.gif">
+								<h4 class="pull-right">31</h4>
+							</div>
+						</div>
+						<div class="span5 offset2 mail">
+							<div class="row-fluid">
+								<img src="../img/icons/mail.gif">
+								<h4 class="pull-right">04</h4>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid status">
+						<div class="span5 users">
+							<div class="row-fluid">
+								<img src="../img/icons/users.gif">
+								<h4 class="pull-right">07</h4>
+							</div>
+						</div>
+						<div class="span5 offset2 tag">
+							<div class="row-fluid">
+								<img src="../img/icons/question.gif">
+								<h4 class="pull-right">11</h4>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<!-- <div class="row-fluid friends_online">
+					<h4 class="sub_header">Friends online <i class="pull-right">27</i></h4>
+					<div class="friends">
+						<div class="row-fluid">
+							<div class="span3 friend">
+								<img src="../img/friend/face1.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face13.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face3.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face4.jpg">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span3 friend">
+								<img src="../img/friend/face21.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face4.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face24.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face6.jpg">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span3 friend">
+								<img src="../img/friend/face7.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face8.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face16.jpg">
+							</div>
+							<div class="span3 friend">
+								<img src="../img/friend/face17.jpg">
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div>
+			<div class="span8">
+				<div class="messages profile_messages">
+					<div class="row-fluid">
+						<div class="selection_bar profile_bar">
+							<div class="row-fuild">
+								<div class="selecton">
+									<h5><a href="#" class="onlink">My Zone</a></h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="create_post">
+						<form ng-submit="newPost()" name="newPostForm" class="new-post-form">
+							<textarea class="span12 whats_up_text" rows="4" placeholder="What's up {{loggedInUser.fname}} {{loggedInUser.lname}}?" name="status"></textarea>
+							<div class="row-fluid input_footer">
+								<i><img src="../img/icons/camera.png"><a href="#" ng-click="uploadPhoto = true">Upload photo or video</a></i>
+								<button class="btn btn-small btn-primary pull-right" type="submit">Post</button>
+							</div>
+						</form>
+						<div ng-show="uploadPhoto">
+							<form enctype="multipart/form-data" file-uploader action="/new-photo" method="post">
+								<input type="file"  name="files[]" multiple>
+								<button type="submit">upload</button>
+							</form>
+						</div>
+					</div>
+					<div class="post" ng-repeat="post in data.posts | orderBy:'post_id':true | limitTo: 30">
+						<ng-include src="'/partials/post_partial.html'"></ng-include>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span3 right_bar">
+		<div class="profile_friends_link">
+			<div class="row-fluid">
+				<div class="show_off">
+					<div class="span5">
+					
+						<h3 class="friends_link_title"><a href="/friends/{{data.user_id}}">Friends</a></h3>
+					</div>
+					<div class="span1">
+						<h3 class="friends_total"><i>{{data.totalFriends}}</i></h3>
+					</div>
+					<div class="span6 example_photos">
+						<div class="row-fluid">
+								<img ng-src="http://cdn.scoolme.com/photos/profile_photos/30px/{{data.fp[0].profile_pic}}" class="span4" height="30" width="30" backup-image>
+								<img ng-src="http://cdn.scoolme.com/photos/profile_photos/30px/{{data.fp[1].profile_pic}}" class="span4" height="30" width="30" backup-image>
+								<img ng-src="http://cdn.scoolme.com/photos/profile_photos/30px/{{data.fp[2].profile_pic}}" class="span4" height="30" width="30" backup-image>
+
+							</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="profile_album_link">
+			<div class="row-fluid ">
+				<div class="show_off">
+					
+						<div class="row-fluid">
+						<h3 class="photo_album_link_title span6"><a href="/user/{{data.user_id}}/photos">Photos</a></h3>
+						<div class="span6 example_photos">
+							<div class="row-fluid">
+								<img ng-src="http://cdn.scoolme.com/photos/{{data.showcase[0].filename}}" class="span4" height="30" width="30" backup-image>
+								<img ng-src="http://cdn.scoolme.com/photos/{{data.showcase[1].filename}}" class="span4" height="30" width="30" backup-image>
+								<img ng-src="http://cdn.scoolme.com/photos/{{data.showcase[2].filename}}" class="span4" height="30" width="30" backup-image>
+
+							</div>
+							<div class="row-fluid">
+								
+								<img ng-src="http://cdn.scoolme.com/photos/{{data.showcase[3].filename}}" class="span4" height="30" width="30" backup-image>
+								<img ng-src="http://cdn.scoolme.com/photos/{{data.showcase[4].filename}}" class="span4" height="30" width="30" backup-image>
+								<img ng-src="http://cdn.scoolme.com/photos/{{data.showcase[5].filename}}" class="span4" height="30" width="30" backup-image>
+
+							</div>
+						</div>
+						</div>
+					
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="row-fluid" ng-show="(data.showcase).length">
+			<div class="show_off">
+				<h3 class="album_header"><a href="/user/{{data.user_id}}/photos">Showcase</a></h3>
+				<div class="preview">
+					<img ng-src="http://cdn.scoolme.com/photos/{{data.showcase[0].filename}}">
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<div back-to-top class="back_to_top">
+		<a href="#"><h4>Back to Top</h4></a>
+	</div>
+
+	<div class="hide" id="upload-progress">
+		<div class="transparent-div"></div>
+		<div class="classy-modal modal" >
+		
+			<div class="upload-progress">
+				<div class="modal-header">
+					<h4>Upload Progress</h4>
+				</div>
+				<div class="progress progress-striped active">
+		  			<div class="bar" style="width: 1%;"></div>
+				</div>
+				<p><span class="small">You will automatically be redirect after upload completes</span></p>
+			</div>
+
+		</div>
+	</div>
+	<div class="transparent-div" ng-click="fromPhotos = false" ng-show="fromPhotos"></div>
+	<div class="modal" ng-show="fromPhotos">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="fromPhotos = false" aria-hidden="true">&times;</button>
+			<h1>Choose From photos</h1>
+		</div>
+		<div class="friends overflow">
+			<ul class="thumbnails row-fluid">
+				<li ng-repeat="photo in photos" class="thumbnail span3 choose-from-photos" ng-class="{'thumbnail-selected': selectedPhoto == photo.photo_id}"><a ng-href="" ng-click="selectAsPhoto(photo.photo_id)"><img ng-src="http://cdn.scoolme.com/photos/{{photo.filename}}" alt=""></a></li>
+			</ul>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary invite" ng-class="{disabled: !selectedPhoto}" ng-click="confirmNewProfilePhoto()">Change it</button>
+		</div>
+	</div>
+</div>
+	

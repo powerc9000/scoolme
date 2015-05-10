@@ -1,0 +1,112 @@
+<div class="row-fluid homepage_main">
+			<div class="span3 left_bar">
+				<div class="club_left_bar">
+					<div class="stats club_message top-clubs"><!--  Message or a video  -->
+						<h3 class="club_header">Top Clubs</h3>
+						<br />
+						<div class="row-fluid">
+							<div class="span6">
+								<div>
+									<img ng-src="http://cdn.scoolme.com/photos/{{topClub[0].club_photo}}" backup-image>
+								</div>
+								<h5 class="align-c"><a href="/clubs/club/{{topClub[0].club_id}}">{{topClub[0].club_name}}</a></h5>
+							</div>
+							<div class="span6">
+								<div>
+									<img ng-src="http://cdn.scoolme.com/photos/{{topClub[1].club_photo}}" backup-image>
+								</div>
+								<h5 class="align-c"><a href="/clubs/club/{{topClub[1].club_id}}">{{topClub[1].club_name}}</a></h5>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span6">
+								<div>
+									<img ng-src="http://cdn.scoolme.com/photos/{{topClub[2].club_photo}}" backup-image>
+								</div>
+								<h5 class="align-c"><a href="/clubs/club/{{topClub[2].club_id}}">{{topClub[2].club_name}}</a></h5>
+							</div>
+							<div class="span6">
+								<div>
+									<img ng-src="http://cdn.scoolme.com/photos/{{topClub[3].club_photo}}" backup-image>
+								</div>
+								<h5 class="align-c"><a href="/clubs/club/{{topClub[3].club_id}}">{{topClub[3].club_name}}</a></h5>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="club_left_bar margin-t">
+					<div class="stats club_message"><!--  Message or a video  -->
+						<h3 class="club_header">Most Hype</h3>
+						<br />
+						<img ng-src="http://cdn.scoolme.com/photos/{{mostHype.club_photo}}" backup-image><br /><br />
+						<h3 class="align-c"><a href="/clubs/club/{{mostHype.club_id}}">{{mostHype.club_name}}</a></h3>
+					</div>
+				</div>
+				
+			</div>
+			<div class="span9">
+				<div class="club_box margin-t">
+					<div class="row-fluid">
+						<h3 class="club_header">Search clubs</h3>
+					</div>
+					<div class="row-fluid">
+						<div class="span9">
+							<input type="text" class="search_club span12" placeholder="Search clubs" ng-change="searchClubs()" ng-model="club_search">
+						</div>
+					</div>
+					<div class="row-fluid">
+						<br />
+						<h3 class="club_header">Closest match</h3>
+					</div>
+					<div class="row-fluid">
+						<div class="club" ng-repeat="club in clubs">
+							<div class="row-fluid">
+								<div class="span2">
+									<img ng-src="http://cdn.scoolme.com/photos/{{club.club_photo}}" height="80" backup-image>
+								</div>
+								<div class="span8">
+									<h4><a href="/clubs/club/{{club.club_id}}">{{club.club_name}}</a></h4>
+									<p>{{club.club_description}}</p>
+								</div>
+								<div class="span2 users">
+									<div class="row-fluid">
+										<h3 class="align-c">Members</h3>
+									</div>
+									<div class="row-fluid">
+										<h3 class="align-c">{{(club.members).length}}</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="club_box">
+					<div class="row-fluid">
+						<h3 class="club_header">Your clubs</h3>
+					</div>
+					<div class="row-fluid">
+						<div class="club" ng-repeat=" club in yourClubs">
+							<div class="row-fluid">
+								<div class="span2">
+									<img ng-src="http://cdn.scoolme.com/photos/{{club.club_photo}}" height="80" backup-image>
+								</div>
+								<div class="span8">
+									<h4><a href="/clubs/club/{{club.club_id}}">{{club.club_name}}</a></h4>
+									<p>{{club.club_description}}</p>
+								</div>
+								<div class="span2 users">
+									<div class="row-fluid">
+										<h3 class="align-c">Members</h3>
+									</div>
+									<div class="row-fluid">
+										<h3 class="align-c">{{(club.members).length}}</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>

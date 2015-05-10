@@ -1,0 +1,148 @@
+body{
+	/*background:url("graphy.png");*/
+}
+.header{
+	background:#3E3F41;
+	height:50px;
+	box-shadow:0 7px 0 #3A89C9;
+}
+.new-post-area form{
+	margin:0;
+}
+
+.new-post-area form textarea{
+	width:430px;
+	border-radius:0;
+	resize:none;
+}
+.new-post-area{
+	padding:10px;
+	padding-top:20px;
+	box-shadow:0 7px 0 #3E3F41;
+	border-right:1px solid #E3E3E3;
+	border-top:1px solid #E3E3E3;
+	border-left:1px solid #E3E3E3;
+}
+.btn-block {
+	display: block;
+	width: 100%;
+	padding-right: 0;
+	padding-left: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.nav{
+	background:#3E3F41;
+	padding-left:37px;
+	margin-top:30px;
+	margin-bottom:30px;
+	box-shadow:0 7px 0 #3A89C9;
+}
+.nav > ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.nav > ul > li{
+	float:left;
+}
+.nav > ul > li > a{
+	padding:10px 50px 10px 50px;
+	color:white;
+	display:block;
+	font-size:14px;
+
+}
+.nav > ul > li > a:hover{
+	background:#3A89C9;
+	color:black;
+
+	text-decoration:none;
+}
+.profile-pic{
+	padding-right:10px;
+}
+.posts{
+	margin-top:50px;
+}
+.post{
+	background:white;
+	padding:10px;
+	box-shadow:0 7px 0 #3E3F41;
+	border-right:1px solid #D9D7D7;
+	border-top:1px solid #D9D7D7;
+	border-left:1px solid #D9D7D7;
+	margin-bottom:20px;
+}
+
+.post-action{
+	background:#D9D7D7;
+	padding:5px;
+}
+.box{
+	background:#3E3F41;
+	padding:10px;
+}
+.row-fluid [class*="span"]:nth-child(2){
+	margin-left:0;
+}
+.friends-online ul{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+.friends-online ul li{
+	float:left;
+}
+.friends-online h4{
+	color:white;
+	margin-bottom:10px;
+}
+.search{
+	padding-top:10px;
+}
+.logo h2{
+	padding-top:6px;
+	color:white;
+}
+.logged-in-user{
+	margin-bottom:10px;
+}
+.logged-in-user .photo-and-name{
+	color:white;
+}
+
+.highlighted h2{
+	color:white;
+	text-decoration:underline;
+}
+.highlighted h3, .highlighted p{
+	color:white;
+}
+.highlighted .top{
+	margin-top:20px;
+	padding-bottom:5px;
+	padding-top:10px;
+	box-shadow:0 7px 0 #3A89C9, 0 -7px 0 #3A89C9;
+}
+.highlighted .contenders{
+	margin-top:40px;
+	padding-left:3px;
+}
+.highlighted .contenders p{
+	font-size:11px;
+	padding-top:5px;
+	padding-bottom:2px;
+}
+.highlighted .contenders .contender{
+	box-shadow:0 5px 0 #3A89C9, 0 -5px 0 #3A89C9;
+	width:80px;
+	padding:5px;
+	float:left;
+	margin-left:5px;
+	margin-bottom:5px;
+	text-align:center;
+	height:150px;
+	line-height:13px;
+}

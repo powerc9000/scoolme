@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">	</head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="http://masonry.desandro.com/jquery.masonry.min.js"></script>
+		
+		<script type="text/javascript">
+
+
+				// Masonry corner stamp modifications
+				$.Mason.prototype.resize = function() {
+				  this._getColumns();
+				  this._reLayout();
+				};
+				
+				$.Mason.prototype._reLayout = function( callback ) {
+				  var freeCols = this.cols;
+				  if ( this.options.cornerStampSelector ) {
+				    var $cornerStamp = this.element.find( this.options.cornerStampSelector ),
+				        cornerStampX = $cornerStamp.offset().left - 
+				          ( this.element.offset().left + this.offset.x + parseInt($cornerStamp.css('marginLeft')) );
+				    freeCols = Math.floor( cornerStampX / this.columnWidth );
+				  }
+				  // reset columns
+				  var i = this.cols;
+				  this.colYs = [];
+				  while (i--) {
+				    this.colYs.push( this.offset.y );
+				  }
+
+				  for ( i = freeCols; i < this.cols; i++ ) {
+				    this.colYs[i] = this.offset.y + $cornerStamp.outerHeight(true);
+				  }
+
+				  // apply layout logic to all bricks
+				  this.layout( this.$bricks, callback );
+				};
+			$(function(){
+				$(".row-fluid").imagesLoaded(function(){
+					$(".row-fluid").masonry({
+						itemSelector:".item",
+						columnWidth: 300,
+  						//cornerStampSelector: ".ad"
+					})
+				})
+				
+			});
+		</script>
+		
+	<body>
+		<div class="row-fluid">
+			<!-- <div class="ad" style="width:200px; height:500px; background:red;">ey!</div> -->
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""><p>It's a cat</p></div>
+			<div class="item"><img src="http://placekitten.com/200/500" alt=""><p>It's a cat</p></div>
+			<div class="item"><img src="http://placekitten.com/200/600" alt=""><p>It's a cat</p></div>
+			<div class="item"><img src="http://placekitten.com/200/200" alt=""><p>It's a cat</p></div>
+			<div class="item"><img src="http://placekitten.com/200/400" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/100" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""><p>It's a cat</p></div>
+			<div class="item"><img src="http://placekitten.com/200/500" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/600" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/200" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/400" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/100" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""><p>It's a cat</p></div>
+			<div class="item"><img src="http://placekitten.com/200/500" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/600" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/200" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/400" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/100" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""><p>It's a cat</p></div>
+			<div class="item"><img src="http://placekitten.com/200/500" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/600" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/200" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/400" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/100" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			<div class="item"><img src="http://placekitten.com/200/300" alt=""></div>
+			
+		</div>
+	</body>
+</html>

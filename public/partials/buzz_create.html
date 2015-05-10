@@ -1,0 +1,28 @@
+<div class="row-fluid new-buzz-question-contain">
+	<form action="/new-buzz-post" method="post" enctype="multipart/form-data">
+		<div class="control-group">
+			<label for="question_body">Post Description</label>
+			<div class="controls">
+				<textarea name="description" id="question_body" class="span-block-level" rows="5" style="resize:none;"></textarea>
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="category">Photo to go with post (optional)</label>
+			<div class="controls">
+				<input type="file" name="photo"> 
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="category">Category</label>
+			<div class="controls">
+				<label for="" ng-repeat="c in categories"><input type="radio" name="category" value="{{c.category_id}}">{{c.category_name}}</label>
+
+				
+			</div>
+		</div>
+		
+		<div class="form-controls">
+			<button type="submit" class="btn btn-primary">Post</button>
+		</div>
+	</form>
+</div>

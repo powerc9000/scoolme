@@ -1,0 +1,173 @@
+<div class="row-fluid homepage_main">
+			<div class="span3 left_bar">
+				<div class="information">
+					<a href="#">
+						<div class="row-fluid profile_link">
+							<h1>Sports Zone</h1>
+						</div>
+					</a>
+					<div class="row-fluid current">
+						<div class="row-fluid status">
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=football">Football</a></h4>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=baseball">Baseball</a></h4>
+								</div>
+							</div>
+						</div>
+						<div class="row-fluid status">
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=basketball">Basketball</a></h4>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=tennis">Tennis</a></h4>
+								</div>
+							</div>
+						</div>
+						<div class="row-fluid status">
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=golf">Golf</a></h4>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=hockey">Hockey</a></h4>
+								</div>
+							</div>
+						</div>
+						<div class="row-fluid status">
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=volleyball">Volleyball</a></h4>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=swimming">Swimming</a></h4>
+								</div>
+							</div>
+						</div>
+						<div class="row-fluid status">
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=soccer">Soccer</a></h4>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=wrestling">Wrestling</a></h4>
+								</div>
+							</div>
+						</div>
+						<div class="row-fluid status">
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=rugby">Rubgy</a></h4>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="row-fluid">
+									<h4 class="sport"><a href="/sports?sport=lacrosse">Lacrosse</a></h4>
+								</div>
+							</div>
+						</div>
+						<i class="icon-chevron-down pull-right darrow" id="extend"></i>
+					</div>
+				</div>
+			</div>
+			<div class="span6 messages">
+				
+					
+				
+				<div class="create_post">
+					<form action="/new-sports-post" method="post" run-after="runAfter()" file-uploader run-without-image="true" enctype="multipart/form-data">
+						<div class="row-fluid">
+							
+								<select class="selection" class="span4" name="league" ng-model="new_post.league" required>
+									<option value="">Select Level</option>
+									<option value="high school">High School</option>
+									<option value="college">College</option>
+									<option value="pro">Professional</option>
+								</select>
+								<select class="selection" class="span4" name="sport" required ng-model="new_post.sport">
+									<option value="">Select Sport</option>
+									<option value="football">Football</option>
+									<option value="baseball">Baseball</option>
+									<option value="basketball">Basketball</option>
+									<option value="tennis">Tennis</option>
+									<option value="golf">Golf</option>
+									<option value="hockey">Hockey</option>
+									<option value="volleyball">Volleyball</option>
+									<option value="swimming">Swimming</option>
+									<option value="soccer">Soccer</option>
+									<option value="wrestling">Wrestling</option>
+									<option value="rugby">Rugby</option>
+									<option value="lacrosse">Lacrosse</option>
+								</select>
+						</div>
+						<textarea class="span12 whats_up_text" rows="4" placeholder="What's up?" required ng-model="new_post.body" name="post_body"></textarea>
+						<div class="row-fluid input_footer">
+							<i><i class="icon-camera upload"></i><a href="#" ng-click="fileUpload = !fileUpload">Upload photo or video</a></i>
+							<input type="file" name="photo" ng-show="fileUpload" ng-model="photo" class="file-uploader">
+							<button class="btn btn-small btn-primary pull-right" type="submit">Post</button>
+						</div>
+					</form>
+				</div>
+				<div class="create_post">
+					<h3 class="white-header">Filter League</h3>
+					<select ng-model="c.league" id="" ng-init="c = {}">
+						<option value="">Select League</option>
+						<option value="high school">High School</option>
+						<option value="college">College</option>
+						<option value="pro">Professional</option>
+						<option value="">All</option>
+					</select>
+				</div>
+				<div class="post" ng-repeat="post in posts | filter:c">
+					<div class="row-fluid head">
+						<div class="post_info">
+							<div class="span2 post_picture">
+								<img src="http://cdn.scoolme.com/photos/profile_photos/80px/{{post.profile_pic}}">
+							</div>
+							<div class="span10 post_text">
+								<h4 class="post_name"><a href="/user/{{post.user_id}}">{{post.fname}} {{post.lname}}</a></h4>
+								<p>{{post.post_body}}</p>
+								<img src="http://cdn.scoolme.com/photos/{{post.filename}}" alt="" ng-show="post.filename">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span3 adverts">
+				<div class="ads">
+					<ng-include src="'/partials/ad.html'"></ng-include>
+				</div>
+			</div>
+		</div>
+
+		<div class="hide" id="upload-progress">
+		<div class="transparent-div"></div>
+		<div class="classy-modal modal" >
+		
+			<div class="upload-progress">
+				<div class="modal-header">
+					<h4>Upload Progress</h4>
+				</div>
+				<div class="progress progress-striped active">
+		  			<div class="bar" style="width: 1%;"></div>
+				</div>
+				<p><span class="small">You will automatically be redirect after upload completes</span></p>
+				<p class="message"></p>
+			</div>
+
+		</div>
+	</div>

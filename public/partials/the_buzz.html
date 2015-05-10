@@ -1,0 +1,70 @@
+<div class="row-fluid margin-t">
+			<div class="buzz_body buzz_container">
+				<div class="row-fluid">
+						<a href="/buzz/create" class="create-new-buzz-post">Create new post</a>
+				</div>
+				<div class="row-fluid">
+					<div class="buzz-list-item" >
+						<h5>
+							<a href="#" ng-click="changeCategory()" masonry-refresh>All</a>
+						</h5>
+					</div>
+					<div class="buzz-list-item" ng-repeat="cat in data.categories">
+						<h5>
+							<a ng-href="" ng-click="changeCategory(cat.category_id)" masonry-refresh>{{cat.category_name}}</a>
+						</h5>
+					</div>
+					<div class="clearfix"></div>
+						<div id="container" class="margin-t">
+							<div class="row-fluid" masonry2=".item" id="masonry">
+								<div class="post item q_a_post" ng-repeat="q in data.questions | filter:c" checkLast>
+									<div class="head">
+										<div class="post_info">
+											<div class="post_text">
+												<h4 class="post_name"><a href="/user/{{q.user_id}}">{{q.fname}} {{q.lname}}</a></h4>
+												<div class="post-image" ng-show="q.filename">
+													<div class="add-to-album">
+														<a href="#" ng-click="addToAlbum()">Add to album</a>
+													</div>
+													<a ng-click="showPhoto(q.filename)" ng-href="" buzz-show-photo><img src="http://cdn.scoolme.com/photos/{{q.filename}}" alt="Move along"></a>
+												</div>
+												<p>{{q.description}}</p>
+												<div class="row-fluid bottom">
+													<i><a ng-href="" class="pull-left" ng-click="like(q.buzz_post_id)" ng-show="!q.liked">Like</a></i>
+													<i><a ng-href="" class="pull-left" ng-click="like(q.buzz_post_id)" ng-show="q.liked">Unlike</a></i>
+													<br>
+													<i><span ng-pluralize count="q.like_count" when="{1: '1 person likes this', 'other':'{} like this'}"></span></i>
+													<div class="row-flud" ng-show="showComments" class="buzz-comment-area">
+														<form ng-submit="answerQuestion()">
+															<input type="text" placeholder="Comment on this" class="span-block" ng-model="comment">
+														</form>
+														<ul class="buzz-comments">
+															<li ng-repeat="a in q.answers | orderBy:'comment_id':true">
+																<img src="http://cdn.scoolme.com/photos/profile_photos/30px/{{a.profile_pic}}" class="pull-left"alt="{{a.fname}} {{a.lname}}"><p>{{a.body}}</p>
+																<small><a href="/user/{{a.user_id}}">{{a.fname}} {{a.lname}}</a></small>
+																<div class="clearfix"></div>
+															</li>
+														</ul>
+													</div>
+													<i><a ng-href="" class="pull-right" ng-click="showComments = true" masonry-refresh ng-show="!showComments">view all comments ({{q.answers.length}})</a></i>
+													<i><a ng-href="" class="pull-right" ng-click="showComments = false" masonry-refresh ng-show="showComments">Hide Comments</a></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div  ng-show="photoDiv.shown" class="buzz-photo-contain" >
+		<div class="transparent-div2" ng-click="closePhoto()" buzz-show-photo></div>
+		<div class="buzz-modal" ng-click="dontClosePhoto()">
+			<img src="http://cdn.scoolme.com/photos/{{photoDiv.filename}}" alt="">
+		</div>
+		
+	</div>
+	

@@ -1,0 +1,115 @@
+<div class="row-fluid homepage_main" id="top">
+	<div class="span3 left_bar">
+		<div class="information">
+			<a href="/profile">
+				<div class="row-fluid profile_link">
+					<div class="span4 offset1">
+						<img ng-src="http://cdn.scoolme.com/photos/profile_photos/80px/{{loggedInUser.profile_pic}}" backup-image>
+					</div>
+					<div class="span7">
+						<p class="profile_name">{{loggedInUser.fname}} {{loggedInUser.lname}}</p>
+						<p class="profile_name2"><i><a href="/profile">Profile</a></i></p>
+					</div>
+				</div>
+			</a>
+			<div class="row-fluid friends_online">
+				<h4 class="sub_header">Friends online <i class="pull-right">{{totalFriendsOnline()}}</i></h4>
+				<div class="friends">
+						<div class="span3 friend" ng-repeat="friend in friendsOnline">
+							<a href"#" ng-click="openChat()"><img ng-src="http://cdn.scoolme.com/photos/profile_photos/30px/{{friend.profile_pic}}" width="30" backup-image></a>
+						</div>
+						<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+
+	
+
+	<div class="span6 messages">
+		<div class="row-fluid">
+			<div class="selection_bar">
+				<div class="selecton">
+					<h5 class="selection_left"><a ng-href="" ng-click="getUserPosts()">My Zone</a></h5>
+				</div>
+				<div class="selecton">
+					<h5><a ng-href="" ng-click="getAllPosts()" class="onlink">Friend Zone</a></h5>
+				</div>
+				<div class="selecton">
+					<h5 class="selection_right"><a ng-href="" ng-click="getUserSchoolPosts()">School Zone</a></h5>
+				</div>
+			</div>
+		</div>
+		<div class="create_post">
+			<form ng-submit="newPost()" name="newPostForm" class="new-post-form">
+				<textarea class="span12 whats_up_text" rows="4" placeholder="What's up {{loggedInUser.fname}} {{loggedInUser.lname}}?" name="status"></textarea>
+				<div class="row-fluid input_footer">
+					<i><img src="../img/icons/camera.png"><a href="#" ng-click="uploadPhoto = true">Upload photo or video</a></i><span> |</span><i><a ng-href="" ng-click="showIdSomeone = !showIdSomeone">ID someone</a></i>
+					<button class="btn btn-small btn-primary pull-right" type="submit">Post</button>
+					<input type="text" ng-show="showIdSomeone" ng-model="idSomeoneSearchBar" ng-change="searchFriends()" placeholder="Start Typing a name">
+					<ul ng-show="friendsMatching.length">
+						<li ng-repeat="f in friendsMatching" ><a ng-href="" ng-click="addToIds(f)">{{f.fname}} {{f.lname}}</a></li>
+					</ul>
+					<div class="friendsId-d" ng-show="friendsIdList">
+						<span ng-repeat="f in friendsIdList">{{f.fname}} {{f.lname}}<a ng-href="" ng-click="removeFromIds($index)"> <small>remove</small></a> </span>
+					</div>
+				</div>
+			</form>
+			<div ng-show="uploadPhoto">
+				<form enctype="multipart/form-data" file-uploader run-after="runAfter(r)" action="/new-photo" method="post">
+					<input type="file"  name="files[]" multiple>
+					<button type="submit">upload</button>
+				</form>
+			</div>
+		</div>
+		<div class="post" ng-repeat="post in data.posts | orderBy:'post_id':true | limitTo:30">
+			<ng-include src="'/partials/post_partial.html'"></ng-include>
+		</div>
+		<div ng-show="!data.posts.length">Looks like you have no posts. Make one!</div>
+	</div>
+	<div class="span3 right_bar">
+		<div class="ads" ng-controller="peopleYouMayKnow">
+			<h3 class="white-header">People you may know</h3>
+			<ul class="people-you-may-know">
+				<li ng-repeat="p in peopleYouMayKnow" class="row-fluid">
+					<div class="span3">
+						<img ng-src="http://cdn.scoolme.com/photos/profile_photos/80px/{{p.profile_pic}}" alt="" width="60" ng-show="p.profile_pic">
+						<img src="http://cdn.scoolme.com/photos/default.png" alt="" width="60" ng-show="!p.profile_pic">
+					</div>
+					<div class="span9">
+						<a href="/user/{{p.user_id}}">{{p.fname}} {{p.lname}}</a>
+						<p ng-show="p.mutual_friends">{{p.mutual_friends}} mutual friends</p>
+						<p ng-show="!p.mutual_friends">Goes to your school</p>
+					</div>
+					
+				</li>
+			</ul>
+		</div>
+				<div class="ads">
+					<ng-include src="'/partials/ad.html'"></ng-include>
+				</div>
+			</div>
+			<div class="back_to_top" back-to-top>
+				<a ><h4>Back to Top</h4></a>
+			</div>
+		</div>
+	<div class="hide" id="upload-progress">
+		<div class="transparent-div"></div>
+		<div class="classy-modal modal" >
+		
+			<div class="upload-progress">
+				<div class="modal-header">
+					<h4>Upload Progress</h4>
+				</div>
+				<div class="progress progress-striped active">
+		  			<div class="bar" style="width: 1%;"></div>
+				</div>
+				<p><span class="small">You will automatically be redirect after upload completes</span></p>
+				<p class="message"></p>
+			</div>
+
+		</div>
+	</div>
+</div>

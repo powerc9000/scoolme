@@ -1,0 +1,28 @@
+<div class="row">
+	<ul>
+		<li ng-repeat="photo in data.photos"><img src="http://cdn.scoolme.com/photos/{{photo.filename}}"></li>
+	</ul>
+	<div class="row">
+		<div class="span5">
+			<form ng-submit="newAlbum()" name="newAlbumForm">
+				<label for="">Create New Album</label>
+				<div class="input-append">
+					{{newAlbumForm.newAlbumName.$error}}
+					<input type="text" name="newAlbumName" required><button class="btn btn-primary" >Create</button>
+				</div>
+			</form>
+		</div>
+		<div class="span5">
+			<form ng-submit="existingAlbum()" name="existingAlbumForm">
+				<label>Add to existing album</label>
+				<div class="input-append">
+					<select required name="album">
+						<option value="">Select an album</option>
+						<option ng-repeat="album in data.albums" value="{{album.album_id}}">{{album.name}}</option>
+					</select><button class="btn btn-primary">Add</button>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>

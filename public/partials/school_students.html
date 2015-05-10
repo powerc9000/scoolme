@@ -1,0 +1,151 @@
+		<div class="row-fluid margin-t">
+			<div class="span9">
+				<div class="row-fluid">
+					<div class="selection_bar profile_bar">
+						<div class="row-fuild">
+							<div class="selecton">
+								<h5><a href="#" id="onlink">sCoolMates</a></h5>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="list_surround">
+					<div class="list">
+						<div class="easyminimize">
+							<div class="row-fluid margin-t">
+									<input type="text" ng-model="graduation" placeholder="Search by graduation" class="pull-right">
+								</div>
+							<div class="row list_row">
+								<div class="span3 item " ng-repeat="s in students | filter:graduation">
+									<div class="span3 ">
+										<img ng-src="http://cdn.scoolme.com/photos/profile_photos/80px/{{s.profile_pic}}" backup-image>
+									</div>
+									<div class="pull-right">
+										<p><a href="/user/{{s.user_id}}">{{s.fname}} {{s.lname}}</a></p>
+									</div>
+									
+								</div>
+								
+							</div>
+						
+							
+							
+							<!-- 
+							<div class="row-fluid margin-t align-c">
+								
+								<div class="span1 catagorize">
+									<p><a href="#">1</a></p>
+								</div>
+								<div class="span1 catagorize" id="onlink">
+									<p><a href="#">2</a></p>
+								</div>
+								<div class="span1 catagorize">
+									<p><a href="#">3</a></p>
+								</div>
+								<div class="span1 catagorize">
+									<p><a href="#">4</a></p>
+								</div>
+								
+							</div> -->
+						</div>
+						
+						<div class="row-fluid finder">
+								
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('')">All</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('a')">A</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('b')">B</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('c')">C</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('d')">D</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('e')">E</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('f')">F</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('g')">G</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('h')">H</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('i')">I</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('j')">J</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('k')">K</a></p>
+								</div>
+								
+							
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('l')">L</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('m')">M</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('n')">N</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('o')">O</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('p')">P</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('q')">Q</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('r')">R</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('s')">S</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('t')">T</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('u')">U</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('v')">V</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('w')">W</a></p>
+								</div>
+						
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('x')">X</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('y')">Y</a></p>
+								</div>
+								<div class=" catagorize">
+									<p><a href="#" ng-click="sort('z')">Z</a></p>
+								</div>
+							
+
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span3 adverts">
+				<div class="ads">
+					<img src="/img/storage/generic_ad.jpg">
+				</div>
+			</div>
+		</div>
